@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useAppSelector } from "./app/hooks";
 import { useEffect, useState } from "react";
 import { generatePrompt } from "./feature/prompt-generator";
 import { getActiveTab } from "./feature/tabs";
@@ -30,7 +28,7 @@ function App() {
   }, [jobPost]);
 
   return (
-    <div className="w-96 h-96">
+    <div className="w-96">
       <div>
         <div className="p-2">
           <span>URL: {url}</span>
