@@ -3,11 +3,22 @@ import "./App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { useEffect, useState } from "react";
 import { generatePrompt } from "./feature/prompt-generator";
+import { getActiveTab } from "./feature/tabs";
 
 function App() {
   const settings = useAppSelector((state) => state.settings);
   const [jobPost, setJobPost] = useState("");
   const [prompt, setPrompt] = useState("");
+  const [url, setUrl] = useState("");
+
+  const fetchUrl = async () => {
+    const tab = await getActiveTab();
+    setUrl(tab.url!);
+  };
+
+  useEffect(() => {
+    fetchUrl();
+  }, []);
 
   useEffect(() => {
     if (!jobPost) {
@@ -21,6 +32,9 @@ function App() {
   return (
     <div className="w-96 h-96">
       <div>
+        <div className="p-2">
+          <span>URL: {url}</span>
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Job Post</span>
