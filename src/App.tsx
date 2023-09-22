@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Settings, getSettings, saveSettings } from "./feature/settings";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { update } from "./feature/settings";
 
 function App() {
-  const [settings, setSettings] = useState<Settings>({});
+  const settings = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    getSettings().then(setSettings);
-  }, []);
-
-  useEffect(() => {
-    saveSettings(settings!);
-  }, [settings.openAiApiKey]);
+  const handleChange = (openAiApiKey: string) => {
+    if (!openAiApiKey) {
+      return;
+    }
+    dispatch(
+      update({
+        openAiApiKey,
+      })
+    );
+  };
 
   return (
     <div className="App">
@@ -23,8 +27,8 @@ function App() {
         <textarea
           name=""
           id=""
-          value={JSON.stringify(settings)}
-          onChange={(e) => setSettings(JSON.parse(e.target.value))}
+          value={settings.openAiApiKey}
+          onChange={(e) => handleChange(e.target.value)}
         ></textarea>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
