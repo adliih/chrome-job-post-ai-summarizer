@@ -5,8 +5,7 @@ The Job Posting Summarizer streamlines the process of summarizing job postings b
 ## Features
 
 - Generate prompts for job postings to extract key points.
-- Utilize AI (Chat GPT) to assist in summarizing job details.
-- Configure key points for summary generation.
+- Configure key points and instructions for prompt generations
 
 ## Installation
 
@@ -23,27 +22,12 @@ The Job Posting Summarizer streamlines the process of summarizing job postings b
 ## Usage
 
 1. Navigate to a job posting webpage.
-
-2. Click on the extension icon.
-
-3. In the popup, click "Generate Prompt".
-
-4. The extension will use the AI (Chat GPT) to create prompts based on the job posting content.
-
+2. Copy the job post description.
+3. Click on the extension icon.
+4. Paste in the "Job Post" text area
 5. Review the generated prompts.
-
-6. Click "Get Summary" to have the AI generate key points for the job posting.
-
-7. The summary will be displayed in the popup.
+6. Manually Copy the generated prompts at the bottom page
 
 ## Configuration
 
 You can customize the key points for the summary by modifying the extension's settings. Refer to the documentation for details on how to adjust the summary configuration.
-
-## Customization
-
-If you wish to customize the extension or integrate it with a different AI model, refer to the codebase and the extension's architecture outlined in the documentation.
-
-## Acknowledgements
-
-- Special thanks to [OpenAI](https://openai.com) for providing the Chat GPT API.
