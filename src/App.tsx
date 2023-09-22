@@ -1,58 +1,47 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { update } from "./feature/settings";
+import { useEffect, useState } from "react";
+import { generatePrompt } from "./feature/prompt-generator";
 
 function App() {
   const settings = useAppSelector((state) => state.settings);
-  const dispatch = useAppDispatch();
+  const [jobPost, setJobPost] = useState("");
+  const [prompt, setPrompt] = useState("");
 
-  const handleChange = (openAiApiKey: string) => {
-    if (!openAiApiKey) {
+  useEffect(() => {
+    if (!jobPost) {
       return;
     }
-    dispatch(
-      update({
-        openAiApiKey,
-      })
+    setPrompt(
+      generatePrompt(jobPost, settings.keyPoints, settings.instructions)
     );
-  };
+  }, [jobPost]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>{JSON.stringify(settings)}</p>
-        <textarea
-          name=""
-          id=""
-          value={settings.openAiApiKey}
-          onChange={(e) => handleChange(e.target.value)}
-        ></textarea>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="w-96 h-96">
+      <div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Job Post</span>
+          </label>
+          <textarea
+            className="h-24 textarea textarea-bordered"
+            value={jobPost}
+            onChange={(e) => setJobPost(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Prompt</span>
+          </label>
+          <textarea
+            className="h-48 textarea textarea-bordered"
+            readOnly
+            value={prompt}
+          ></textarea>
+        </div>
+      </div>
     </div>
   );
 }

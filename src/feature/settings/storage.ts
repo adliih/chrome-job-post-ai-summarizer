@@ -33,7 +33,7 @@ export async function saveSettings(settings: Settings) {
 
 export async function getSettings(): Promise<Settings> {
   const settings = (await chrome.storage.local.get()) as Settings;
-  if (settings) {
+  if (settings.instructions && settings.keyPoints) {
     return settings;
   }
   console.log("No settings found, will save default settings");

@@ -1,5 +1,5 @@
 const NEW_LINE = "\n";
-const SECTION_SEPARATOR = `${NEW_LINE}----------${NEW_LINE}`;
+const SECTION_SEPARATOR = `----------`;
 
 export function generatePrompt(
   jobPost: string,
@@ -11,11 +11,12 @@ export function generatePrompt(
     SECTION_SEPARATOR,
     jobPost,
     SECTION_SEPARATOR,
-    `And given these required keypoints`,
+    `And these required keypoints`,
     SECTION_SEPARATOR,
     ...keyPoints,
     SECTION_SEPARATOR,
-    `Please follow these instructions`,
-    ...instructions.map((instruction) => `- ${instruction}`),
+    `Please do the following`,
+    SECTION_SEPARATOR,
+    ...instructions,
   ].join(NEW_LINE);
 }

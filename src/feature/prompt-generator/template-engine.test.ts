@@ -8,9 +8,7 @@ test("generatePrompt", () => {
 
   const prompt = generatePrompt(jobPost, keyPoints, instructions);
 
-  const expectedInstructions = ["- Please do A", "- Please do B"];
-
   expect(prompt).toContain(jobPost);
   expect(prompt).toContain(keyPoints.join("\n"));
-  expect(prompt).toContain(expectedInstructions.join("\n"));
+  expect(prompt).toContain(instructions.join("\n"));
 });
