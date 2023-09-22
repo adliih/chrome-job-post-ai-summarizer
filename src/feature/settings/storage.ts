@@ -40,3 +40,7 @@ export async function getSettings(): Promise<Settings> {
   await saveSettings(defaultSettings);
   return defaultSettings;
 }
+
+export async function resetSettings(): Promise<void> {
+  await chrome.storage.local.clear();
+}

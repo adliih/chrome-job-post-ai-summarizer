@@ -7,15 +7,11 @@ export const settingsSlice = createSlice({
   initialState,
   name: "settings",
   reducers: {
-    update: (state, { payload }: { payload: Partial<Settings> }) => {
-      if (payload.instructions) {
-        state.instructions = payload.instructions;
-      }
-      if (payload.keyPoints) {
-        state.keyPoints = payload.keyPoints;
-      }
+    update: (state, { payload }: { payload: Settings }) => {
+      state.instructions = payload.instructions;
+      state.keyPoints = payload.keyPoints;
 
-      saveSettings(state);
+      saveSettings({ ...state, ...payload });
     },
   },
 });

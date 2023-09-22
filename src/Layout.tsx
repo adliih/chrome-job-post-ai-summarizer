@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { resetSettings } from "./feature/settings/storage";
 
 export default function Layout({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
@@ -19,6 +20,12 @@ export default function Layout({ children }: React.PropsWithChildren) {
           onClick={() => navigate("/settings")}
         >
           <span className="btm-nav-label">Settings</span>
+        </button>
+        <button
+          className="text-blue-600 bg-blue-200 border-blue-600"
+          onClick={() => resetSettings()}
+        >
+          <span className="btm-nav-label">Reset Settings</span>
         </button>
       </div>
     </div>

@@ -31,9 +31,12 @@ function App() {
   return (
     <Layout>
       <div>
-        <div className="p-2">
-          <span>URL: {url}</span>
+        <div className="flex justify-center text-center">
+          <span className="p-2 text-xl font-bold text-center">
+            Prompt Generator
+          </span>
         </div>
+        <p>Paste the job description in the Job Post Text Area</p>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Job Post</span>
