@@ -1,20 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { Settings, getSettings, saveSettings } from "./feature/settings";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [settings, setSettings] = useState<Settings>({});
+
+  useEffect(() => {
+    getSettings().then(setSettings);
+  }, []);
+
+  useEffect(() => {
+    saveSettings(settings!);
+  }, [settings.openAiApiKey]);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
+        <p>{JSON.stringify(settings)}</p>
+        <textarea
+          name=""
+          id=""
+          value={JSON.stringify(settings)}
+          onChange={(e) => setSettings(JSON.parse(e.target.value))}
+        ></textarea>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
