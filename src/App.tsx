@@ -2,6 +2,7 @@ import { useAppSelector } from "./app/hooks";
 import { useEffect, useState } from "react";
 import { generatePrompt } from "./feature/prompt-generator";
 import { getActiveTab } from "./feature/tabs";
+import Layout from "./Layout";
 
 function App() {
   const settings = useAppSelector((state) => state.settings);
@@ -28,7 +29,7 @@ function App() {
   }, [jobPost]);
 
   return (
-    <div className="w-96">
+    <Layout>
       <div>
         <div className="p-2">
           <span>URL: {url}</span>
@@ -54,7 +55,7 @@ function App() {
           ></textarea>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
