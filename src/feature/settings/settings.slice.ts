@@ -8,8 +8,11 @@ export const settingsSlice = createSlice({
   name: "settings",
   reducers: {
     update: (state, { payload }: { payload: Partial<Settings> }) => {
-      if (payload.openAiApiKey) {
-        state.openAiApiKey = payload.openAiApiKey;
+      if (payload.instructions) {
+        state.instructions = payload.instructions;
+      }
+      if (payload.keyPoints) {
+        state.keyPoints = payload.keyPoints;
       }
 
       saveSettings(state);
