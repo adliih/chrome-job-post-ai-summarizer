@@ -25,7 +25,7 @@ function App() {
       return;
     }
     setPrompt(
-      generatePrompt(jobPost, settings.keyPoints, settings.instructions)
+      generatePrompt(jobPost, url, settings.keyPoints, settings.instructions)
     );
   }, [jobPost]);
 
