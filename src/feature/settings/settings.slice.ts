@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Settings, getSettings, saveSettings } from "./storage";
+import { Settings, defaultSettings, saveSettings } from "./storage";
 
-const initialState: Settings = await getSettings();
+const initialState: Settings = defaultSettings;
 
 export const settingsSlice = createSlice({
   initialState,

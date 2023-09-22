@@ -1,11 +1,13 @@
-import { useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { useEffect, useState } from "react";
 import { generatePrompt } from "./feature/prompt-generator";
 import { getActiveTab } from "./feature/tabs";
 import Layout from "./Layout";
+import { getSettings, update } from "./feature/settings";
 
 function App() {
   const settings = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
   const [jobPost, setJobPost] = useState("");
   const [prompt, setPrompt] = useState("");
   const [url, setUrl] = useState("");
@@ -15,8 +17,14 @@ function App() {
     setUrl(tab.url!);
   };
 
+  const fetchSettings = async () => {
+    const settings = await getSettings();
+    dispatch(update(settings));
+  };
+
   useEffect(() => {
     fetchUrl();
+    fetchSettings();
   }, []);
 
   useEffect(() => {

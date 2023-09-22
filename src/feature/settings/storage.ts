@@ -3,7 +3,7 @@ export interface Settings {
   instructions: string[];
 }
 
-const defaultSettings: Settings = {
+export const defaultSettings: Settings = {
   keyPoints: [
     "Work Location/Arrangement",
     "Company Name",
