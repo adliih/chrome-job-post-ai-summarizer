@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Settings, defaultSettings, saveSettings } from "./storage";
+import {
+  Settings,
+  defaultSettings,
+  resetSettings,
+  saveSettings,
+} from "./storage";
 
 const initialState: Settings = defaultSettings;
 
@@ -13,9 +18,13 @@ export const settingsSlice = createSlice({
 
       saveSettings({ ...state, ...payload });
     },
+    reset: () => {
+      resetSettings();
+      return defaultSettings;
+    },
   },
 });
 
-export const { update } = settingsSlice.actions;
+export const { update, reset } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
