@@ -62,7 +62,7 @@ function App() {
             <span className="label-text">Prompt</span>
           </label>
           <textarea
-            className="h-48 textarea textarea-bordered"
+            className="h-24 textarea textarea-bordered"
             readOnly
             value={prompt}
           ></textarea>
